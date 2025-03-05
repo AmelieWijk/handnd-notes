@@ -21,18 +21,18 @@ import com.example.handndnotes.smolPadding
 //}
 
 @Composable
-fun LabelAndText(label: String, value: String, boldedSeparator: String = ":") {
+fun LabelAndText(label: String, value: String, separator: String = ":") {
     val resolvedText by remember {
         mutableStateOf(
             buildAnnotatedString {
                 withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
-                    append("$label$boldedSeparator ")
+                    append("$label$separator ")
                 }
                 append(value)
             })
     }
 
-    Text(resolvedText)
+    Text(resolvedText,Modifier.smolPadding())
 }
 
 

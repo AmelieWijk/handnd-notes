@@ -26,8 +26,8 @@ fun HandyIcon(@DrawableRes drawable: Int) {
 fun Outline(content: @Composable () -> Unit) {
     Box(
         Modifier
-            .smolPadding()
             .border(2.dp, Color.Black)
+            .smolPadding()
     ) {
         content()
     }

@@ -12,13 +12,18 @@ import com.example.handndnotes.text.BasicTextInfo
 import com.example.handndnotes.text.LabelAndText
 import com.example.handndnotes.util.HandyIcon
 import com.example.handndnotes.util.HandySpacer
-import com.example.handndnotes.util.Outline
 
-abstract class HandyComponent(val key: String? = null, val keys: List<String>? =null) {
+fun nyi() :Nothing = throw NotImplementedError()
+
+abstract class HandyComponent(val key: String? = null, val keys: List<String>? = null) {
 
     @Composable
     abstract fun Content()
+
+    open fun export() : String = nyi()
 }
+
+fun <T: HandyComponent> import(string: String): T? = nyi()
 
 data class DndSpell(
     val name: String,
@@ -42,21 +47,21 @@ data class DndSpell(
         ::duration
     ).filter { it.get() != null }
 
-    val prettyRegex = "([A-Z](?=[A-Z]))|([A-Z]?[a-z]+)".toRegex()
+    companion object {
+        val prettyRegex = "([A-Z](?=[A-Z]))|([A-Z]?[a-z]+)".toRegex()
 
-    fun String.prettyName() = prettyRegex.findAll(this)
-        .joinToString(" ") {
-            it.value[0].uppercase() + it.value.substring(1)
-        }
+        fun String.prettyName() = prettyRegex.findAll(this)
+            .joinToString(" ") {
+                it.value[0].uppercase() + it.value.substring(1)
+            }
+    }
 
     @Composable
     override fun Content() {
         Dropdown(header = {
             BasicTextInfo { name }
             Spacer(Modifier.weight(1f))
-            Outline {
-                HandyIcon(R.drawable.placeholder)
-            }
+            HandyIcon(R.drawable.placeholder)
         }) {
             Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 BasicTextInfo { "$spellLevel-level $school" }
@@ -71,7 +76,7 @@ data class DndSpell(
                 BasicTextInfo { description }
                 HandySpacer()
                 upcastDescription?.let { upcast ->
-                    LabelAndText("At higher Levels", upcast, boldedSeparator = ".")
+                    LabelAndText("At higher Levels", upcast, separator = ".")
                 }
             }
         }
