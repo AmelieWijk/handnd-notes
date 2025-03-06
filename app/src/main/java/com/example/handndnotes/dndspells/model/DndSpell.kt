@@ -19,7 +19,7 @@ import com.example.handndnotes.util.StringExtensions.prettyName
 import com.example.handndnotes.util.toJson
 import kotlinx.serialization.Serializable
 
-fun nyi(): Nothing = throw NotImplementedError()
+
 
 @Serializable
 data class DndSpell(

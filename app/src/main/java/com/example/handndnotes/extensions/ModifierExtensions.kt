@@ -27,7 +27,7 @@ class HandyBorderOptions {
            it.apply(strokeWidth,color)
         }
 
-    class Side(strokeWidth: Dp, color: Color) {
+    class Side(strokeWidth: Dp, var color: Color) {
         var strokeWidth = strokeWidth
             set(value) {
                 field = value
@@ -38,7 +38,6 @@ class HandyBorderOptions {
         var halfWidth: Dp = strokeWidth / 2
             private set
 
-        var color = color
         fun visible() = strokeWidth != Dp.Unspecified && color != Color.Transparent
         fun apply(strokeWidth: Dp, color: Color){
             this.strokeWidth = strokeWidth

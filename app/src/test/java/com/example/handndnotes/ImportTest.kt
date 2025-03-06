@@ -23,9 +23,6 @@ class ImportTest {
 
         val imported = HandyComponent.import(exported)
         assertNotNull(imported)
-
-        assert(imported is DndSpell && imported.school == DndSchools.necromancy) {
-            "ACTUAL: $imported"
-        }
+        assert(imported == FirstLevelSpells.inflictWounds)
     }
 }
