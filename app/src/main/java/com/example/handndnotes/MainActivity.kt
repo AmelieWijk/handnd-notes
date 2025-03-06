@@ -21,6 +21,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
@@ -37,17 +38,20 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        println("AMY " + FirstLevelSpells.inflictWounds.export())
-
-
-
         setContent {
             HanDnDNotesTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    LazyColumn(Modifier.padding(innerPadding)) {
+                    LazyColumn(
+                        verticalArrangement = Arrangement.spacedBy(smolPadding),
+                        modifier = Modifier.padding(innerPadding)
+                    ) {
                         item {
                             MainMenu()
-
+                        }
+                        repeat(50) {
+                            item {
+                                FirstLevelSpells.inflictWounds.Content()
+                            }
                         }
                     }
                 }
@@ -55,6 +59,7 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
 
 @Composable
 fun MainMenu() {
@@ -81,6 +86,7 @@ fun GreetingPreview() {
     }
 }
 
+//As HandyComponent?
 @Composable
 @SuppressLint("ModifierParameter")
 fun Dropdown(
@@ -89,27 +95,31 @@ fun Dropdown(
     dropdownModifier: Modifier = Modifier,
     dropdown: @Composable () -> Unit
 ) {
+    val borderColor = Color.DarkGray
     Column {
         var expanded by remember { mutableStateOf(false) }
-        Outline {
-            Row(headerModifier.clickable { expanded = !expanded }) {
+
+            Row(headerModifier.handyBorder{
+                startAndEnd(2.dp, borderColor)
+                top.apply(2.dp, borderColor)
+                if(!expanded) bottom.apply(2.dp,borderColor)
+            }.clickable { expanded = !expanded }, verticalAlignment = Alignment.CenterVertically) {
                 header()
             }
-        }
+
         AnimatedVisibility(expanded) {
             Box(
                 Modifier
-                    .padding(start = smolPadding, end = smolPadding, bottom = smolPadding)
-                    .then(dropdownModifier)
                     .handyBorder {
-                        startAndEnd(2.dp, Color.Black)
-                        bottom.apply(2.dp, Color.Black)
+                        startAndEnd(2.dp, borderColor)
+                        bottom.apply(2.dp, borderColor)
                     }
+                    .then(dropdownModifier)
+
                     .smolPadding()
             ) {
                 dropdown()
             }
-
         }
     }
 }

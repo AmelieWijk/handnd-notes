@@ -47,16 +47,18 @@ data class DndSpell(
 
     @Composable
     override fun Content() {
+        val textColor = school.textColor
         Dropdown(
             header = {
-                BasicTextInfo { name }
+                BasicTextInfo(textColor = textColor) { name }
                 Spacer(Modifier.weight(1f))
                 HandyIcon(R.drawable.placeholder)
             },
-            dropdownModifier = Modifier.background(school.bg)
+            headerModifier = Modifier.background(school.dropDownBg),
+            dropdownModifier = Modifier.background(school.headerBg)
         ) {
             Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                val textColor = school.textColor
+
                 BasicTextInfo(textColor = textColor) { "$spellLevel-level $school" }
                 HandySpacer()
 
