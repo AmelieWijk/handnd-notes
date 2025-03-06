@@ -5,13 +5,8 @@ import com.example.handndnotes.dndspells.Common.DndSchools
 import com.example.handndnotes.dndspells.FirstLevelSpells
 import com.example.handndnotes.dndspells.model.DndSpell
 import kotlinx.serialization.InternalSerializationApi
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.serializer
+import org.junit.Assert.assertNotNull
 import org.junit.Test
-
-import org.junit.Assert.*
-import org.koin.ext.getFullName
-import kotlin.reflect.KClass
 
 /**
  * Example local unit test, which will execute on the development machine (host).

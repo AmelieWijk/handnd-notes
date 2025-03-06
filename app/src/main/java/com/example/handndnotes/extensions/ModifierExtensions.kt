@@ -1,6 +1,5 @@
 package com.example.handndnotes.extensions
 
-import androidx.compose.foundation.layout.width
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset

@@ -14,7 +14,6 @@ import com.example.handndnotes.dndspells.Common.DndSchools
 import com.example.handndnotes.text.BasicTextInfo
 import com.example.handndnotes.text.LabelAndText
 import com.example.handndnotes.util.HandyIcon
-import com.example.handndnotes.util.HandySerialization
 import com.example.handndnotes.util.HandySpacer
 import com.example.handndnotes.util.StringExtensions.prettyName
 import com.example.handndnotes.util.toJson

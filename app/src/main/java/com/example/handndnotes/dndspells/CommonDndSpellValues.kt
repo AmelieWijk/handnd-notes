@@ -1,13 +1,5 @@
 package com.example.handndnotes.dndspells
 
-import androidx.compose.ui.graphics.Brush
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.LinearGradient
-import com.example.handndnotes.ui.theme.Brown
-import com.example.handndnotes.ui.theme.Green
-import com.example.handndnotes.ui.theme.Purple40
-import com.example.handndnotes.ui.theme.PurpleGrey40
-
 object CommonDndSpellValues {
 
     object CastingTime {

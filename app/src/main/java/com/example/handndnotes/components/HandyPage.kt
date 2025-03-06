@@ -1,7 +1,6 @@
 package com.example.handndnotes.components
 
 import androidx.compose.runtime.Composable
-import com.example.handndnotes.util.HandySerialization
 import com.example.handndnotes.util.toJson
 import kotlinx.serialization.Serializable
 
