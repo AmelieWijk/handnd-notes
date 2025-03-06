@@ -1,5 +1,6 @@
 package com.example.handndnotes
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -59,31 +60,6 @@ fun MainMenu() {
 val smolPadding = 4.dp
 fun Modifier.smolPadding() = padding(smolPadding)
 
-
-@Composable
-fun Dropdown(header: @Composable RowScope.() -> Unit, dropdown: @Composable () -> Unit) {
-    Column {
-        var expanded by remember { mutableStateOf(false) }
-        Outline {
-            Row(Modifier.clickable { expanded = !expanded }) {
-                header()
-            }
-        }
-        AnimatedVisibility(expanded) {
-            Box(
-                Modifier
-                    .padding(start = smolPadding, end = smolPadding, bottom = smolPadding)
-                    .handyBorder {
-                        startAndEnd(2.dp, Color.Black)
-                        bottom.apply(2.dp, Color.Black)
-                    }.smolPadding()) {
-                dropdown()
-            }
-
-        }
-    }
-}
-
 @Preview(showBackground = true)
 @Composable
 fun GreetingPreview() {
@@ -97,6 +73,39 @@ fun GreetingPreview() {
                     FirstLevelSpells.inflictWounds.Content()
                 }
             }
+        }
+    }
+}
+
+@Composable
+@SuppressLint("ModifierParameter")
+fun Dropdown(
+    header: @Composable RowScope.() -> Unit,
+    headerModifier: Modifier = Modifier,
+    dropdownModifier: Modifier = Modifier,
+    dropdown: @Composable () -> Unit
+) {
+    Column {
+        var expanded by remember { mutableStateOf(false) }
+        Outline {
+            Row(headerModifier.clickable { expanded = !expanded }) {
+                header()
+            }
+        }
+        AnimatedVisibility(expanded) {
+            Box(
+                Modifier
+                    .padding(start = smolPadding, end = smolPadding, bottom = smolPadding)
+                    .then(dropdownModifier)
+                    .handyBorder {
+                        startAndEnd(2.dp, Color.Black)
+                        bottom.apply(2.dp, Color.Black)
+                    }
+                    .smolPadding()
+            ) {
+                dropdown()
+            }
+
         }
     }
 }

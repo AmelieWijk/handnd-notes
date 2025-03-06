@@ -6,6 +6,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -14,6 +15,7 @@ import androidx.compose.ui.text.withStyle
 import com.example.handndnotes.dimensions.SizeOption
 import com.example.handndnotes.dimensions.resolveSize
 import com.example.handndnotes.smolPadding
+
 //
 //@Composable
 //fun Header(text:String){
@@ -21,25 +23,30 @@ import com.example.handndnotes.smolPadding
 //}
 
 @Composable
-fun LabelAndText(label: String, value: String, separator: String = ":") {
+fun LabelAndText(label: String, value: String, textColor: Color = Color.Black, separator: String = ":") {
     val resolvedText by remember {
         mutableStateOf(
             buildAnnotatedString {
-                withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
+                withStyle(SpanStyle(fontWeight = FontWeight.Bold, color = textColor)) {
                     append("$label$separator ")
                 }
-                append(value)
+                withStyle(SpanStyle(color = textColor)) {
+                    append(value)
+                }
             })
     }
 
-    Text(resolvedText,Modifier.smolPadding())
+    Text(resolvedText, Modifier.smolPadding())
 }
 
 
+//TODO: dsl builder for text options
 @Composable
-fun BasicTextInfo(size: SizeOption = SizeOption.Wrap, text: () -> String) =
+fun BasicTextInfo(size: SizeOption = SizeOption.Wrap, textColor: Color = Color.Black, text: () -> String) =
     Text(
-        text(), Modifier
+        text = text(), modifier = Modifier
             .resolveSize(size)
-            .smolPadding()
+            .smolPadding(),
+        color = textColor
+
     )
