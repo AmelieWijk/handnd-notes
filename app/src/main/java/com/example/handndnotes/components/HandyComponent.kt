@@ -1,7 +1,11 @@
 package com.example.handndnotes.components
 
 import android.util.Log
+import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import com.example.handndnotes.composeComponents.BasicButton
 import kotlinx.serialization.EncodeDefault
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
@@ -24,6 +28,16 @@ abstract class HandyComponent(
     @Composable
     abstract fun Content()
     abstract fun export(): String
+    @Composable
+    fun ContentWithEditButton(){
+        Box{
+            Content()
+            BasicButton("Edit", Modifier.alpha(0.5f)) {  }
+        }
+    }
+
+    @Composable
+    open fun EditView(){}
 
     companion object {
         val tag = HandyComponent::class.simpleName

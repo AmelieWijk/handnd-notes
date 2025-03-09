@@ -1,6 +1,8 @@
 package com.example.handndnotes
 
 import com.example.handndnotes.components.HandyComponent
+import com.example.handndnotes.components.HandyPage
+import com.example.handndnotes.customize.HandyComponentDefaults
 import com.example.handndnotes.dndspells.Common.DndSchools
 import com.example.handndnotes.dndspells.FirstLevelSpells
 import com.example.handndnotes.dndspells.model.DndSpell
@@ -17,12 +19,22 @@ import org.junit.Test
 class ImportTest {
     @OptIn(InternalSerializationApi::class)
     @Test
-    fun testExportImport() {
-        val exported = FirstLevelSpells.inflictWounds.export()
+    fun testExportImport_Dropdown() {
+        importExport(FirstLevelSpells.inflictWounds)
+    }
+
+    fun importExport(component: HandyComponent){
+        val exported = component.export()
         assert(exported.isNotEmpty())
 
         val imported = HandyComponent.import(exported)
         assertNotNull(imported)
-        assert(imported == FirstLevelSpells.inflictWounds)
+        assert(imported == component)
     }
+
+    @Test
+    fun testExportImport_Page(){
+        importExport(HandyComponentDefaults.page.defaultProvider())
+    }
+
 }

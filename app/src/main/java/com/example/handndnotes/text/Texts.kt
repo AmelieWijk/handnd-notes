@@ -11,10 +11,10 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.withStyle
+import com.example.handndnotes.composeComponents.smolPadding
 
 import com.example.handndnotes.dimensions.SizeOption
 import com.example.handndnotes.dimensions.resolveSize
-import com.example.handndnotes.smolPadding
 
 //
 //@Composable

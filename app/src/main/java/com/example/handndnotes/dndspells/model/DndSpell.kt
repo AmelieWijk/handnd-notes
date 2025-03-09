@@ -7,9 +7,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.example.handndnotes.Dropdown
 import com.example.handndnotes.R
 import com.example.handndnotes.components.HandyComponent
+import com.example.handndnotes.composeComponents.Dropdown
 import com.example.handndnotes.dndspells.Common.DndSchools
 import com.example.handndnotes.text.BasicTextInfo
 import com.example.handndnotes.text.LabelAndText
@@ -35,7 +35,6 @@ data class DndSpell(
     val icon: Int? = null,
 
 ) : HandyComponent(name) {
-
 
     val labels = listOf(
         ::spellLevel,

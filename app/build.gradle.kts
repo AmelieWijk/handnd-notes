@@ -66,7 +66,7 @@ dependencies {
     runtimeOnly(libs.koin.core)
     implementation(libs.koin.core.coroutines)
     implementation(libs.koin.android)
-    runtimeOnly(libs.koin.compose)
+    implementation(libs.koin.compose)
 
 
 
