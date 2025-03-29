@@ -1,32 +1,30 @@
 package com.example.handndnotes.components
 
-import android.util.Log
 import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import com.example.handndnotes.composeComponents.BasicButton
-import kotlinx.serialization.EncodeDefault
+import com.example.handndnotes.util.fromJson
+
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.InternalSerializationApi
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.serializer
 import org.koin.ext.getFullName
 
-@Serializable
 @OptIn(ExperimentalSerializationApi::class)
+//NOTE: var instead of val because weird serialization shenanigans...
+// Otherwise they're excluded in subtype serialization
 abstract class HandyComponent(
-    val key: String? = null, //For eventual search functionality
-    val keys: List<String>? = null, //For eventual search functionality
+    var key: String? = null, //For eventual search functionality
+    var keys: List<String>? = null, //For eventual search functionality
 ) {
-    val tag = this::class.simpleName
+    var tag = this::class.simpleName
 
-    @EncodeDefault
-    val qualifiedName: String = this::class.getFullName().split("$")[0]
+    var qualifiedName: String = this::class.getFullName().split("$")[0]
 
     @Composable
     abstract fun Content()
+
     abstract fun export(): String
     @Composable
     fun ContentWithEditButton(){
@@ -40,24 +38,15 @@ abstract class HandyComponent(
     open fun EditView(){}
 
     companion object {
-        val tag = HandyComponent::class.simpleName
-        val qualifiedNameRegex = "qualifiedName\":\"(.*?)\"".toRegex()
+        val classField = HandyComponent::qualifiedName.name
 
         @OptIn(InternalSerializationApi::class)
-        //FIXME: first solution, should use some jsonParser instead of hacky regex
         fun import(string: String): HandyComponent? {
-            val className = qualifiedNameRegex.find(string)?.groups[1]?.value ?: return null
-
             return try {
-                val clazz = Class.forName(className).kotlin
-                Json.decodeFromString(clazz.serializer(), string) as? HandyComponent
+                string.fromJson()
             } catch (e: Exception) {
-                Log.e(
-                    tag,
-                    "Failed to import string. classname: " + "$className, full string: $string",
-                    e
-                )
-                null
+               e.printStackTrace()
+               null
             }
         }
     }

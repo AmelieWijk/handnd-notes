@@ -8,9 +8,7 @@ import androidx.compose.ui.Modifier
 import com.example.handndnotes.composeComponents.smolPadding
 import com.example.handndnotes.text.BasicTextInfo
 import com.example.handndnotes.util.toJson
-import kotlinx.serialization.Serializable
 
-@Serializable
 class HandyRow(
     val name: String? = null, private val _components: MutableList<HandyComponent> = mutableListOf()
 ) : HandyComponent(name) {

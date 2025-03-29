@@ -4,9 +4,7 @@ import androidx.compose.runtime.Composable
 import com.example.handndnotes.composeComponents.Dropdown
 
 import com.example.handndnotes.util.toJson
-import kotlinx.serialization.Serializable
 
-@Serializable
 class HandyDropdown(val name: String? = null) : HandyComponent(name) {
 
     val header = HandyRow()

@@ -14,6 +14,7 @@ kotlinxSerializationJson = "1.8.0"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.10.1"
 composeBom = "2025.02.00"
+moshi = "1.15.2"
 moshiKotlin = "1.15.2"
 serialization = "2.1.10"
 
@@ -37,7 +38,9 @@ koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koinBom" }
 koin-compose = { module = "io.insert-koin:koin-compose", version.ref = "koinCompose" }
 koin-core-coroutines = { module = "io.insert-koin:koin-core-coroutines", version.ref = "koinCoreCoroutines" }
 koin-core = { module = "io.insert-koin:koin-core", version.ref = "koinCore" }
+kotlin-reflect = { module = "org.jetbrains.kotlin:kotlin-reflect", version.ref = "kotlin" }
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJson" }
+moshi = { module = "com.squareup.moshi:moshi", version.ref = "moshi" }
 moshi-kotlin = { module = "com.squareup.moshi:moshi-kotlin", version.ref = "moshiKotlin" }
 
 [plugins]

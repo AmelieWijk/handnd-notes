@@ -19,5 +19,4 @@ object FirstLevelSpells {
         duration = Duration.instant,
         castingTime = CastingTime.action
     )
-
 }

@@ -16,12 +16,8 @@ import com.example.handndnotes.text.LabelAndText
 import com.example.handndnotes.util.HandyIcon
 import com.example.handndnotes.util.HandySpacer
 import com.example.handndnotes.util.StringExtensions.prettyName
-import com.example.handndnotes.util.toJson
-import kotlinx.serialization.Serializable
+import com.example.handndnotes.util.moshi
 
-
-
-@Serializable
 data class DndSpell(
     val name: String,
     val spellLevel: String,
@@ -76,6 +72,6 @@ data class DndSpell(
         }
     }
 
-    override fun export(): String = toJson()
+    override fun export(): String = moshi.adapter(DndSpell::class.java).serializeNulls().toJson(this)
 }
 

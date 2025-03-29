@@ -61,6 +61,7 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
+    implementation(libs.kotlin.reflect)
     implementation(platform(libs.koin.bom))
     implementation(libs.moshi.kotlin)
     runtimeOnly(libs.koin.core)

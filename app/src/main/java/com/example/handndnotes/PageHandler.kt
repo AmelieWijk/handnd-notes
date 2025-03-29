@@ -1,15 +1,15 @@
 package com.example.handndnotes
 
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import com.example.handndnotes.components.HandyComponent
 import com.example.handndnotes.components.HandyPage
 import com.example.handndnotes.customize.HandyComponentDefaults
-import com.example.handndnotes.util.HandySnapshotList
 import com.example.handndnotes.util.showToast
 import kotlinx.coroutines.flow.MutableStateFlow
 
 class PageHandler() {
 
-    val pages: HandySnapshotList<HandyPage> = HandySnapshotList()
+    val pages: SnapshotStateList<HandyPage> = SnapshotStateList()
 
     val selectedPage = MutableStateFlow(HandyComponentDefaults.page.defaultProvider())
 
